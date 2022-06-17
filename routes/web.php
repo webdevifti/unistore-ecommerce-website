@@ -31,4 +31,11 @@ Route::get('/faq', [PageController::class, 'faq'])->name('faq.page');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/admin-panel/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function(){
+    Route::group(['middleware' => ['AdminProtectedRoutes']], function(){
+        Route::get('/test', function(){
+            return 'test';
+        });
+    });
+});
