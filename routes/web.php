@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\site\PageController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,8 @@ Auth::routes();
 Route::get('/admin-panel/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function(){
     Route::group(['middleware' => ['AdminProtectedRoutes']], function(){
-        
+        Route::resources([
+            '/manage-products' => AdminProductController::class,
+        ]);
     });
 });

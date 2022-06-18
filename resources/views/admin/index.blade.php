@@ -1,11 +1,8 @@
-
 @extends('admin.layouts.app')
+@section('title', 'Dashboard')
 @section('admin_content')
 		<!--page-wrapper-->
-		<div class="page-wrapper">
-			<!--page-content-wrapper-->
-			<div class="page-content-wrapper">
-				<div class="page-content">
+		
 					<div class="row">
 						<div class="col-12 col-lg-3">
 							<div class="card radius-15 bg-voilet">
@@ -599,10 +596,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-			<!--end page-content-wrapper-->
-		</div>
+				
 		<!--end page-wrapper-->
 
 @endsection
