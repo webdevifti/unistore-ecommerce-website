@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\AdminProductController;
+use App\Http\Controllers\admin\AdminCategoryController;
+use App\Http\Controllers\admin\AdminProductController;
 use App\Http\Controllers\site\PageController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,11 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function(){
     Route::group(['middleware' => ['AdminProtectedRoutes']], function(){
         Route::resources([
             '/manage-products' => AdminProductController::class,
+            '/category' => AdminCategoryController::class,
         ]);
+
+        // Category Route
+        Route::get('/category/status/{id}', [AdminCategoryController::class, 'status'])->name('category.status');
+        Route::get('/category/delete/{id}', [AdminCategoryController::class, 'destroy'])->name('category.delete');
     });
 });

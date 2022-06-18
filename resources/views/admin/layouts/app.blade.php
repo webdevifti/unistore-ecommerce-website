@@ -29,6 +29,8 @@
 	<link rel="stylesheet" href="{{ asset('admin_assets/css/app.css' ) }}" />
 	<link rel="stylesheet" href="{{ asset('admin_assets/css/dark-sidebar.css' ) }}" />
 	<link rel="stylesheet" href="{{ asset('admin_assets/css/dark-theme.css' ) }}" />
+	<link rel="stylesheet" type="text/css" 
+	href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 
 <body>
@@ -56,10 +58,10 @@
 					</a>
 				</li>
 				<li>
-					<a href="emailbox.html">
+					<a href="{{ route('admin.category.index') }}">
 						<div class="parent-icon icon-color-2"><i class="bx bx-envelope"></i>
 						</div>
-						<div class="menu-title">Email</div>
+						<div class="menu-title">Categories</div>
 					</a>
 				</li>
 			
@@ -73,7 +75,7 @@
 					</a>
 					<ul>
 						<li> <a href="{{ route('admin.manage-products.index') }}"><i class="bx bx-right-arrow-alt"></i>Manage Products</a>
-						<li> <a href="#"><i class="bx bx-right-arrow-alt"></i>Add New Product</a>
+						<li> <a href="{{ route('admin.manage-products.create') }}"><i class="bx bx-right-arrow-alt"></i>Add New Product</a>
 						<li> <a href="#"><i class="bx bx-right-arrow-alt"></i>Product Trashed <span class="trash-count">1</span></a>
 						</li>
 					</ul>
@@ -294,7 +296,7 @@
 	{{-- <script src="{{ asset('admin_assets/js/index2.js') }}"></script> --}}
 	<!--Data Tables js-->
 	<script src="{{ asset('admin_assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
-	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 	<!-- App JS -->
 	<script src="{{ asset('admin_assets/js/app.js') }}"></script>
 
