@@ -17,7 +17,7 @@
             <br>
 
             <button type="submit" class="btn btn-primary">Sign In</button>
-            <a href="#forgin-password" data-action="Forgot-Password" class="xs-margin">Password recovery ></a>
+            <a href="#forgin-password" data-action="Modal-ForgotPassword" class="xs-margin">Password recovery ></a>
             <br><br>
 
             <p>
@@ -29,7 +29,7 @@
             <hr class="offset-sm">
 
             <p>
-              Don't have an account? Create one now! <a href="../signup/"> Registration > </a>
+              Don't have an account? Create one now! <a href="{{ route('signup.page') }}"> Registration > </a>
             </p>
 
           </form>

@@ -39,6 +39,9 @@
             <p>
               By creating an account you will be able to shop faster, be up to date on an order's status, and keep track of the orders you have previously made.
             </p>
+            <p>
+              Already have an account?  <a href="{{ route('login.page') }}"> Login > </a>
+            </p>
           </form>
 
           <br class="hidden-sm hidden-md hidden-lg">
