@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title','Manage Products')
+@section('title','Create Products')
 @section('admin_content')
 <!--breadcrumb-->
 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -43,46 +43,28 @@
                                 <input type="text" placeholder="Product Name" class="form-control" id="inputFirstName" name="product_name">
                             </div>
                             <div class="col-md-6">
-                                <label for="inputLastName" class="form-label">Last Name</label>
-                                <input type="password" class="form-control" id="inputLastName">
+                                <label for="inputState" class="form-label">Product Category</label>
+                                <select id="inputState" class="form-select">
+                                    <option value="">Choose Category...</option>
+                                    @foreach($getCategory as $category)
+                                        <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="col-md-6">
-                                <label for="inputEmail" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="inputEmail">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="inputPassword" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="inputPassword">
+                                <label for="inputState" class="form-label">Product Brand</label>
+                                <select id="inputState" class="form-select">
+                                    <option  value="">Choose Brand Name...</option>
+                                    @foreach($getBrandsName as $brand)
+                                        <option value="{{ $brand->id }}">{{ $brand->brand_name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="col-12">
                                 <label for="inputAddress" class="form-label">Address</label>
                                 <textarea class="form-control" id="inputAddress" placeholder="Address..." rows="3"></textarea>
                             </div>
-                            <div class="col-12">
-                                <label for="inputAddress2" class="form-label">Address 2</label>
-                                <textarea class="form-control" id="inputAddress2" placeholder="Address 2..." rows="3"></textarea>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="inputCity" class="form-label">City</label>
-                                <input type="text" class="form-control" id="inputCity">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="inputState" class="form-label">Category</label>
-                                <select id="inputState" class="form-select">
-                                    <option selected="">Choose...</option>
-                                    <option>...</option>
-                                </select>
-                            </div>
-                            <div class="col-md-2">
-                                <label for="inputZip" class="form-label">Zip</label>
-                                <input type="text" class="form-control" id="inputZip">
-                            </div>
-                            <div class="col-12">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                                    <label class="form-check-label" for="gridCheck">Check me out</label>
-                                </div>
-                            </div>
+                            
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary px-5">Submit</button>
                             </div>

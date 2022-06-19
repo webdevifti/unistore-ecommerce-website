@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\ProductBrand;
 use Illuminate\Http\Request;
 
 class AdminProductController extends Controller
@@ -25,7 +27,10 @@ class AdminProductController extends Controller
     public function create()
     {
         //
-        return view('admin.products.create');
+        $getBrandsName = ProductBrand::where('status',1)->orderBy('brand_name','ASC')->get();
+        $getCategory = Category::where('status',1)->orderBy('category_name','ASC')->get();
+        // dd($getBrandsName);
+        return view('admin.products.create',compact('getBrandsName','getCategory'));
     }
 
     /**
