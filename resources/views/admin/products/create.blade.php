@@ -43,8 +43,8 @@
                                 <input type="text" placeholder="Product Name" class="form-control" id="inputFirstName" name="product_name">
                             </div>
                             <div class="col-md-6">
-                                <label for="inputState" class="form-label">Product Category</label>
-                                <select id="inputState" class="form-select">
+                                <label for="inputCat" class="form-label">Product Category</label>
+                                <select id="inputCat" class="form-select">
                                     <option value="">Choose Category...</option>
                                     @foreach($getCategory as $category)
                                         <option value="{{ $category->id }}">{{ $category->category_name }}</option>
@@ -52,8 +52,8 @@
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label for="inputState" class="form-label">Product Brand</label>
-                                <select id="inputState" class="form-select">
+                                <label for="inputBrand" class="form-label">Product Brand</label>
+                                <select id="inputBrand" class="form-select">
                                     <option  value="">Choose Brand Name...</option>
                                     @foreach($getBrandsName as $brand)
                                         <option value="{{ $brand->id }}">{{ $brand->brand_name }}</option>
@@ -61,7 +61,7 @@
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label for="inputState" class="form-label">Product Brand</label>
+                                <label for="inputTags" class="form-label">Product Tags</label>
                                 <select class="multiple-select"  data-placeholder="Choose Tags" multiple="multiple">
                                     <option value="">Choose Tags...</option>
                                     @foreach($getTags as $tag)
@@ -69,6 +69,24 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="col-md-3">
+                                <label for="inputqty" class="form-label">Product Quantity</label>
+                                <input type="number" min="0" placeholder="Product Quantity" class="form-control" id="inputqty" name="qty">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="inputrp" class="form-label">Product Regular Price</label>
+                                <input type="number" min="0" placeholder="Regular or Buying Price" class="form-control" id="inputrp" name="regular_price">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="inputd" class="form-label">Price Dicount in (%)</label>
+                                <input type="number" min="0"  placeholder="Dicount (optional)" class="form-control" id="inputd" name="discount">
+                                <span class="text-primary">If you add dicount product price will consider with dicounted price</span>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="inputsp" class="form-label">Selling Price</label>
+                                <input type="number" min="0"  placeholder="Selling Price" class="form-control" id="inputsp" name="selling_price">
+                            </div>
+                           
                             <div class="col-12">
                                 <label for="inputAddress" class="form-label">Address</label>
                                 <textarea class="form-control" id="inputAddress" placeholder="Address..." rows="3"></textarea>

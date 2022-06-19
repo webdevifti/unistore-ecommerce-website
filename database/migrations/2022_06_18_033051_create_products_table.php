@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('thumbnail')->nullable();
             $table->integer('qty');
             $table->integer('discount')->nullable();
+            $table->integer('discounted_price')->nullable();
             $table->integer('stock_alert')->nullable();
             $table->integer('regular_price');
             $table->integer('selling_price');
