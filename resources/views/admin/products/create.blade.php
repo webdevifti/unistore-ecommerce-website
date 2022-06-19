@@ -62,7 +62,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="inputState" class="form-label">Product Brand</label>
-                                <select class="multiple-select"  data-placeholder="Choose anything" multiple="multiple">
+                                <select class="multiple-select"  data-placeholder="Choose Tags" multiple="multiple">
                                     <option value="">Choose Tags...</option>
                                     @foreach($getTags as $tag)
                                         <option value="{{ $tag->id }}">{{ $tag->tag_name }}</option>
