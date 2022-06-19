@@ -60,6 +60,15 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="col-md-6">
+                                <label for="inputState" class="form-label">Product Brand</label>
+                                <select class="multiple-select"  data-placeholder="Choose anything" multiple="multiple">
+                                    <option value="">Choose Tags...</option>
+                                    @foreach($getTags as $tag)
+                                        <option value="{{ $tag->id }}">{{ $tag->tag_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="col-12">
                                 <label for="inputAddress" class="form-label">Address</label>
                                 <textarea class="form-control" id="inputAddress" placeholder="Address..." rows="3"></textarea>
@@ -77,5 +86,12 @@
 </div>
 @endsection
 @section('footer_scripts')
-
+<script>
+    $('.multiple-select').select2({
+			theme: 'bootstrap4',
+			width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+			placeholder: $(this).data('placeholder'),
+			allowClear: Boolean($(this).data('allow-clear')),
+		});
+</script>
 @endsection

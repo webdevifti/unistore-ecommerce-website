@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\AdminCategoryController;
 use App\Http\Controllers\admin\AdminProductBrandController;
 use App\Http\Controllers\admin\AdminProductController;
+use App\Http\Controllers\admin\AdminTagController;
 use App\Http\Controllers\site\PageController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -42,14 +43,19 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function(){
             '/manage-products' => AdminProductController::class,
             '/category' => AdminCategoryController::class,
             '/product-brands' => AdminProductBrandController::class,
+            '/manage-tags' => AdminTagController::class,
         ]);
 
         // Category Route
         Route::get('/category/status/{id}', [AdminCategoryController::class, 'status'])->name('category.status');
         Route::get('/category/delete/{id}', [AdminCategoryController::class, 'destroy'])->name('category.delete');
 
-          // Product Brand Route
-          Route::get('/product-brands/status/{id}', [AdminProductBrandController::class, 'status'])->name('brand.status');
-          Route::get('/product-brands/delete/{id}', [AdminProductBrandController::class, 'destroy'])->name('brand.delete');
+        // Product Brand Route
+        Route::get('/product-brands/status/{id}', [AdminProductBrandController::class, 'status'])->name('brand.status');
+        Route::get('/product-brands/delete/{id}', [AdminProductBrandController::class, 'destroy'])->name('brand.delete');
+        
+        // Product Tags Route
+        Route::get('/manage-tags/status/{id}', [AdminTagController::class, 'status'])->name('tag.status');
+        Route::get('/manage-tags/delete/{id}', [AdminTagController::class, 'destroy'])->name('tag.delete');
     });
 });

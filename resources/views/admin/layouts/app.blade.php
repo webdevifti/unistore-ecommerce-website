@@ -31,6 +31,8 @@
 	<link rel="stylesheet" href="{{ asset('admin_assets/css/dark-theme.css' ) }}" />
 	<link rel="stylesheet" type="text/css" 
 	href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+	<link href="{{ asset('admin_assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet" />
+	<link href="{{ asset('admin_assets/plugins/select2/css/select2-bootstrap4.css') }}" rel="stylesheet" />
 </head>
 
 <body>
@@ -69,6 +71,13 @@
 						<div class="parent-icon icon-color-2"><i class="bx bx-envelope"></i>
 						</div>
 						<div class="menu-title">Brands</div>
+					</a>
+				</li>
+				<li>
+					<a href="{{ route('admin.manage-tags.index') }}">
+						<div class="parent-icon icon-color-2"><i class="bx bx-envelope"></i>
+						</div>
+						<div class="menu-title">Tags</div>
 					</a>
 				</li>
 			
@@ -304,6 +313,7 @@
 	<!--Data Tables js-->
 	<script src="{{ asset('admin_assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<script src="{{ asset('admin_assets/plugins/select2/js/select2.min.js') }}"></script>
 	<!-- App JS -->
 	<script src="{{ asset('admin_assets/js/app.js') }}"></script>
 
