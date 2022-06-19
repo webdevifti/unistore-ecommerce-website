@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title','Manage Category')
+@section('title','Manage Brands')
 @section('admin_content')
 <!--breadcrumb-->
 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -8,7 +8,7 @@
             <ol class="breadcrumb mb-0 p-0">
                 <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                 </li>
-                <li class="breadcrumb-item" aria-current="page">Category</li>
+                <li class="breadcrumb-item" aria-current="page">Product Brand</li>
             </ol>
         </nav>
     </div>
@@ -26,15 +26,15 @@
             <div class="card-body">
                 <div class="d-lg-flex align-items-center">
                     <div>
-                        <h5 class="mb-4">Add Categories</h5>
+                        <h5 class="mb-4">Add Brands</h5>
                     </div>
                    
                 </div>
-                <form class="row g-3" action="{{ route('admin.category.store') }}" method="POST">
+                <form class="row g-3" action="{{ route('admin.product-brands.store') }}" method="POST">
                     @csrf
                     <div class="col-12">
-                        <label for="inputCategoryName" class="form-label">Category Name</label>
-                        <input type="text" placeholder="Category Name" autofocus class="form-control" id="inputCategoryName" name="category_name">
+                        <label for="inputCategoryName" class="form-label">Brand Name</label>
+                        <input type="text" placeholder="Brand Name" autofocus class="form-control" id="inputCategoryName" name="brand_name">
                     </div>
                     <div class="col-12">
                         <button type="submit" class="btn btn-primary px-5">Add</button>
@@ -48,7 +48,7 @@
             <div class="card-body">
                 <div class="d-flex align-items-center mb-3">
                     <div>
-                        <h5 class="mb-0">Categories</h5>
+                        <h5 class="mb-0">Brands</h5>
                     </div>
                    
                 </div>
@@ -56,7 +56,7 @@
                     <table id="example2" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Category</th>
+                                <th>Brands</th>
                                 <th>Created At</th>
                                 <th>Updated At</th>
                                 <th>Status</th>
@@ -64,16 +64,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($get_categories as $item)
+                            @foreach($get_brands as $item)
                             <tr>
-                               <td>{{ $item->category_name }}</td>
+                               <td>{{ $item->brand_name }}</td>
                                <td>{{ $item->created_at->diffForHumans() }}</td>
                                <td>{{ $item->updated_at->diffForHumans() }}</td>
                                <td>
                                     @if($item->status == 1)
-                                        <a href="{{ route('admin.category.status', $item->id) }}" class="btn btn-success btn-sm">Active</a>
+                                        <a href="{{ route('admin.brand.status', $item->id) }}" class="btn btn-success btn-sm">Active</a>
                                     @else 
-                                        <a href="{{ route('admin.category.status', $item->id) }}" class="btn btn-primary btn-sm">Deactive</a>
+                                        <a href="{{ route('admin.brand.status', $item->id) }}" class="btn btn-primary btn-sm">Deactive</a>
                                     @endif
                                </td>
                                <td>
@@ -86,12 +86,12 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form class="row g-3" action="{{ route('admin.category.update', $item->id) }}" method="POST">
+                                                <form class="row g-3" action="{{ route('admin.product-brands.update', $item->id) }}" method="POST">
                                                     @csrf
                                                     @method('PUT')
                                                     <div class="col-12">
-                                                        <label for="inputCategoryName" class="form-label">Category Name</label>
-                                                        <input type="text" placeholder="Category Name" class="form-control" value="{{ $item->category_name }}" id="inputCategoryName" name="category_name">
+                                                        <label for="inputCategoryName" class="form-label">Brand Name</label>
+                                                        <input type="text" placeholder="Brand Name" class="form-control" value="{{ $item->brand_name }}" id="inputCategoryName" name="brand_name">
                                                     </div>
                                                    
                                                
@@ -121,7 +121,7 @@
                                                     <div class="modal-body">Are You Sure. Because this action can not be undone.</div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <a href="{{ route('admin.category.delete',$item->id) }}" class="btn btn-primary">
+                                                        <a href="{{ route('admin.brand.delete',$item->id) }}" class="btn btn-primary">
                                                             Delete
                                                         </a>
                                                     </div>
@@ -134,7 +134,7 @@
                         </tbody>
                         <tfoot>
                              <tr>
-                                <th>Category</th>
+                                <th>Brand</th>
                                 <th>Created At</th>
                                 <th>Updated At</th>
                                 <th>Status</th>

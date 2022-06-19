@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AdminCategoryController;
+use App\Http\Controllers\admin\AdminProductBrandController;
 use App\Http\Controllers\admin\AdminProductController;
 use App\Http\Controllers\site\PageController;
 use Illuminate\Support\Facades\Auth;
@@ -40,10 +41,15 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function(){
         Route::resources([
             '/manage-products' => AdminProductController::class,
             '/category' => AdminCategoryController::class,
+            '/product-brands' => AdminProductBrandController::class,
         ]);
 
         // Category Route
         Route::get('/category/status/{id}', [AdminCategoryController::class, 'status'])->name('category.status');
         Route::get('/category/delete/{id}', [AdminCategoryController::class, 'destroy'])->name('category.delete');
+
+          // Product Brand Route
+          Route::get('/product-brands/status/{id}', [AdminProductBrandController::class, 'status'])->name('brand.status');
+          Route::get('/product-brands/delete/{id}', [AdminProductBrandController::class, 'destroy'])->name('brand.delete');
     });
 });

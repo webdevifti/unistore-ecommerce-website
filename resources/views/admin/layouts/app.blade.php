@@ -64,6 +64,13 @@
 						<div class="menu-title">Categories</div>
 					</a>
 				</li>
+				<li>
+					<a href="{{ route('admin.product-brands.index') }}">
+						<div class="parent-icon icon-color-2"><i class="bx bx-envelope"></i>
+						</div>
+						<div class="menu-title">Brands</div>
+					</a>
+				</li>
 			
 			
 				
