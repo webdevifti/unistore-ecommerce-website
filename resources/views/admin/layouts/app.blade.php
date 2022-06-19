@@ -29,6 +29,9 @@
 	<link rel="stylesheet" href="{{ asset('admin_assets/css/app.css' ) }}" />
 	<link rel="stylesheet" href="{{ asset('admin_assets/css/dark-sidebar.css' ) }}" />
 	<link rel="stylesheet" href="{{ asset('admin_assets/css/dark-theme.css' ) }}" />
+	
+	<link href="{{ asset('admin_assets/plugins/fancy-file-uploader/fancy_fileupload.css') }}" rel="stylesheet" />
+	<link href="{{ asset('admin_assets/plugins/Drag-And-Drop/dist/imageuploadify.min.css') }}" rel="stylesheet" />
 	<link rel="stylesheet" type="text/css" 
 	href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 	<link href="{{ asset('admin_assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet" />
@@ -75,7 +78,7 @@
 				</li>
 				<li>
 					<a href="{{ route('admin.manage-tags.index') }}">
-						<div class="parent-icon icon-color-2"><i class="bx bx-envelope"></i>
+						<div class="parent-icon icon-color-2"><i class="bx bx-hash"></i>
 						</div>
 						<div class="menu-title">Tags</div>
 					</a>
@@ -309,6 +312,12 @@
 	<script src="{{ asset('admin_assets/plugins/vectormap/jquery-jvectormap-uk-mill-en.js') }}"></script>
 	<script src="{{ asset('admin_assets/plugins/vectormap/jquery-jvectormap-au-mill.js') }}"></script>
 	<script src="{{ asset('admin_assets/plugins/apexcharts-bundle/js/apexcharts.min.js') }}"></script>
+	
+	<script src="{{ asset('admin_assets/plugins/fancy-file-uploader/jquery.ui.widget.js') }}"></script>
+	<script src="{{ asset('admin_assets/plugins/fancy-file-uploader/jquery.fileupload.js') }}"></script>
+	<script src="{{ asset('admin_assets/plugins/fancy-file-uploader/jquery.iframe-transport.js') }}"></script>
+	<script src="{{ asset('admin_assets/plugins/fancy-file-uploader/jquery.fancy-fileupload.js') }}"></script>
+	<script src="{{ asset('admin_assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js') }}"></script>
 	{{-- <script src="{{ asset('admin_assets/js/index2.js') }}"></script> --}}
 	<!--Data Tables js-->
 	<script src="{{ asset('admin_assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>

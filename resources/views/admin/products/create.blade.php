@@ -37,7 +37,8 @@
                             <h5 class="mb-0 text-primary">Add your product information</h5>
                         </div>
                         <hr>
-                        <form class="row g-3">
+                        <form class="row g-3" action="{{ route('admin.manage-products.store') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
                             <div class="col-md-6">
                                 <label for="inputFirstName" class="form-label">Product Name</label>
                                 <input type="text" placeholder="Product Name" class="form-control" id="inputFirstName" name="product_name">
@@ -88,8 +89,17 @@
                             </div>
                            
                             <div class="col-12">
-                                <label for="inputAddress" class="form-label">Address</label>
-                                <textarea class="form-control" id="inputAddress" placeholder="Address..." rows="3"></textarea>
+                                <div class="card radius-15">
+                                    <div class="card-body">
+                                        <div class="card-title">
+                                            <h4 class="mb-0">Upload Product Thumbnail</h4>
+                                        </div>
+                                        <hr/>
+                                        <form>
+                                            <input id="image-uploadify" type="file" accept="image/*" multiple>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                             
                             <div class="col-12">
@@ -111,5 +121,18 @@
 			placeholder: $(this).data('placeholder'),
 			allowClear: Boolean($(this).data('allow-clear')),
 		});
+</script>
+<script>
+    $('#fancy-file-upload').FancyFileUpload({
+        params: {
+            action: 'fileuploader'
+        },
+        maxfilesize: 1000000
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#image-uploadify').imageuploadify();
+    })
 </script>
 @endsection
