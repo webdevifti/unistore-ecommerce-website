@@ -45,7 +45,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="inputCat" class="form-label">Product Category</label>
-                                <select id="inputCat" class="form-select">
+                                <select id="inputCat" name="category" class="form-select">
                                     <option value="">Choose Category...</option>
                                     @foreach($getCategory as $category)
                                         <option value="{{ $category->id }}">{{ $category->category_name }}</option>
@@ -54,7 +54,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="inputBrand" class="form-label">Product Brand</label>
-                                <select id="inputBrand" class="form-select">
+                                <select id="inputBrand" name="brand" class="form-select">
                                     <option  value="">Choose Brand Name...</option>
                                     @foreach($getBrandsName as $brand)
                                         <option value="{{ $brand->id }}">{{ $brand->brand_name }}</option>
@@ -63,7 +63,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="inputTags" class="form-label">Product Tags</label>
-                                <select class="multiple-select"  data-placeholder="Choose Tags" multiple="multiple">
+                                <select class="multiple-select"  data-placeholder="Choose Tags" multiple="multiple" class="tags[]">
                                     <option value="">Choose Tags...</option>
                                     @foreach($getTags as $tag)
                                         <option value="{{ $tag->id }}">{{ $tag->tag_name }}</option>
@@ -87,21 +87,32 @@
                                 <label for="inputsp" class="form-label">Selling Price</label>
                                 <input type="number" min="0"  placeholder="Selling Price" class="form-control" id="inputsp" name="selling_price">
                             </div>
-                           
+                            <div class="col-md-3 mt-3">
+                                <label class="custom-file-label" for="inputGroupFile01">Choose Product Thumbnail</label>
+                                <input type="file" oninput="pic.src=window.URL.createObjectURL(this.files[0])" name="product_thumbnail" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                
+                            </div>
+                            <img style="height: 100px;width: 150px;object-fit:cover;" id="pic" alt="">
+                                @error('product_thumbnail')
+                                    <p style="color:red">{{ $message }}</p>
+                               @enderror
                             <div class="col-12">
                                 <div class="card radius-15">
                                     <div class="card-body">
                                         <div class="card-title">
-                                            <h4 class="mb-0">Upload Product Thumbnail</h4>
+                                            <h4 class="mb-0">Upload Product Images</h4>
                                         </div>
                                         <hr/>
                                         <form>
-                                            <input id="image-uploadify" type="file" accept="image/*" multiple>
+                                            <input id="image-uploadify" name="product_images[]" type="file" accept="image/*" multiple>
                                         </form>
                                     </div>
                                 </div>
                             </div>
-                            
+                            <div class="col-12">
+                                <label for="inputdesc" class="form-label">Product Short Description</label>
+                                <textarea name="short_des" id="ckeditor" cols="30" rows="10" placeholder="Product Short Description" class="form-control"></textarea>
+                            </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary px-5">Submit</button>
                             </div>
@@ -114,6 +125,10 @@
 </div>
 @endsection
 @section('footer_scripts')
+<script src="//cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'short_des' );
+</script>
 <script>
     $('.multiple-select').select2({
 			theme: 'bootstrap4',
