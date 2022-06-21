@@ -63,7 +63,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="inputTags" class="form-label">Product Tags</label>
-                                <select class="multiple-select"  data-placeholder="Choose Tags" multiple="multiple" class="tags[]">
+                                <select class="multiple-select"  data-placeholder="Choose Tags" multiple="multiple" name="tags[]">
                                     <option value="">Choose Tags...</option>
                                     @foreach($getTags as $tag)
                                         <option value="{{ $tag->id }}">{{ $tag->tag_name }}</option>
@@ -103,15 +103,19 @@
                                             <h4 class="mb-0">Upload Product Images</h4>
                                         </div>
                                         <hr/>
-                                        <form>
+                                  
                                             <input id="image-uploadify" name="product_images[]" type="file" accept="image/*" multiple>
-                                        </form>
+                                       
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12">
+                            <div class="col-12 mb-4">
                                 <label for="inputdesc" class="form-label">Product Short Description</label>
-                                <textarea name="short_des" id="ckeditor" cols="30" rows="10" placeholder="Product Short Description" class="form-control"></textarea>
+                                <textarea name="short_des" id="inputdesc" cols="30" rows="10" placeholder="Product Short Description" class="form-control"></textarea>
+                            </div>
+                            <div class="col-12 mb-4">
+                                <label for="inputspeci" class="form-label">Product Specification</label>
+                                <textarea name="specification" id="inputspeci" cols="30" rows="10" placeholder="Product Short Description" class="form-control"></textarea>
                             </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary px-5">Submit</button>
@@ -128,6 +132,7 @@
 <script src="//cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
 <script>
     CKEDITOR.replace( 'short_des' );
+    CKEDITOR.replace( 'specification' );
 </script>
 <script>
     $('.multiple-select').select2({
