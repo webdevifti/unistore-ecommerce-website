@@ -137,11 +137,55 @@
                                @enderror
                             </div>
                             <h3>Product Specifications</h3> 
-
-                            <label for="os">Operating system</label>
-                            <input type="text" id="os" placeholder="Operating system" class="form-control" name="os" value="{{ old('os') }}">
-                            <label for="pcsr">Proccessor</label>
-                            <input type="text" id="pcsr" placeholder="Proccessor" class="form-control" name="pcsr" value="{{ old('pcsr') }}">
+                            <div class="row">
+                                <div class="col-md-6 col-lg-6">
+                                    <label for="os">Operating system</label>
+                                    <input type="text" id="os" placeholder="Operating system" class="form-control" name="os" value="{{ old('os') }}">
+        
+                                    <label for="pcsr">Proccessor</label>
+                                    <input type="text" id="pcsr" placeholder="Proccessor" class="form-control" name="pcsr" value="{{ old('pcsr') }}">
+        
+                                    <label for="pcsrt">Proccessor Technology</label>
+                                    <input type="text" id="pcsrt" placeholder="Proccessor Technology" class="form-control" name="pcsrt" value="{{ old('pcsrt') }}">
+                                   
+                                    <label for="graphics">Graphics</label>
+                                    <input type="text" id="graphics" placeholder="Graphics" class="form-control" name="graphics" value="{{ old('graphics') }}">
+        
+                                    <label for="memory">Memory</label>
+                                    <input type="text" id="memory" placeholder="Memory" class="form-control" name="memory" value="{{ old('memory') }}">
+                                    
+                                    <label for="sensor">Sensor</label>
+                                    <input type="text" id="sensor" placeholder="Sensor" class="form-control" name="sensor" value="{{ old('sensor') }}">
+        
+                                    <label for="blth">Bluetooth</label>
+                                    <input type="text" id="blth" placeholder="Bluetooth" class="form-control" name="blth" value="{{ old('blth') }}">
+                                    <label for="other">Other</label>
+                                    <input type="text" id="other" placeholder="Other" class="form-control" name="other" value="{{ old('other') }}">
+                                </div>
+                                <div class="col-md-6 col-lg-6">
+                                    <label for="hard_drive">Hard Drive</label>
+                                    <input type="text" id="hard_drive" placeholder="Hard Drive" class="form-control" name="hard_drive" value="{{ old('hard_drive') }}">
+        
+                                    <label for="wl">Wireless</label>
+                                    <input type="text" id="wl" placeholder="Wireless" class="form-control" name="wl" value="{{ old('wl') }}">
+                                    
+                                    <label for="ps">Power supply</label>
+                                    <input type="text" id="ps" placeholder="Power supply" class="form-control" name="ps" value="{{ old('ps') }}">
+        
+                                    <label for="battery">Battery</label>
+                                    <input type="text" id="battery" placeholder="Battery" class="form-control" name="battery" value="{{ old('battery') }}">
+        
+                                    <label for="bc">Back Camera</label>
+                                    <input type="text" id="bc" placeholder="Back Camera" class="form-control" name="bc" value="{{ old('bc') }}">
+        
+                                    <label for="fc">Front Camera</label>
+                                    <input type="text" id="fc" placeholder="Front Camera" class="form-control" name="fc" value="{{ old('fc') }}">
+        
+                                    <label for="fingerprint">Fingerprint</label>
+                                    <input type="text" id="fingerprint" placeholder="Fingerprint" class="form-control" name="fingerprint" value="{{ old('fingerprint') }}">
+        
+                                </div>
+                            </div>
                            
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary px-5">Submit</button>
