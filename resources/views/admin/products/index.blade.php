@@ -32,6 +32,7 @@
                     <tr>
                         <th>SL</th>
                         <th>Product</th>
+                        <th>Image</th>
                         <th>Quantity</th>
                         <th>Selling Price</th>
                         <th>Regular Price</th>
@@ -50,6 +51,13 @@
                     <tr>
                         <td>{{ $sl }}</td>
                         <td>{{ $item->product_name }}</td>
+                        <td>
+                            @if($item->thumbnail)
+                                <img style="width: 100px;height: 50px;object-fit:cover;" src="{{ asset('uploads/products/thumbnails/'.$item->thumbnail) }}" alt="">
+                            @else
+                                <img style="width: 100px;height: 50px;object-fit:cover;" src="{{ asset('product.jpg') }}" alt="">
+                            @endif
+                        </td>
                         <td>{{ $item->qty }}</td>
                         <td>{{ $item->selling_price }}</td>
                         <td>{{ $item->regular_price }}</td>
