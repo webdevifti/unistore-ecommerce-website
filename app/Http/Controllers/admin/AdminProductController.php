@@ -216,11 +216,23 @@ class AdminProductController extends Controller
         return back()->with('success', "Product restored. Go to Product page");
     }
     public function permanentDelete($id){
-        // $pid = Products::onlyTrashed()->find($id);
+        
+         $p_tags = ProductTagTable::where('product_id', $id)->get();
+         foreach($p_tags as $t){
+            ProductTagTable::find($t->product_id)->delete();
+         }
+         $p_specification = ProductSpecification::where('product_id', $id)->get();
+         foreach($p_specification as $sp){
+            ProductSpecification::find($sp->product_id)->delete();
+         }
+         $p_img = ProductImages::where('product_id', $id)->get();
+         foreach($p_img as $img){
+            ProductImages::find($img->product_id)->delete();
+            unlink(public_path('/uploads/products/images/'.$img->image));
+         }
+         $pid = Products::onlyTrashed()->find($id);
+         unlink(public_path('uploads/products/thumbnails/'.$pid->thumbnail));
          Products::onlyTrashed()->find($id)->forceDelete();
-        //  $subcat = SubCategory::where('category_id', $id)->first();
-        //  $subcat->delete();
-        // unlink(public_path('uploads/categories/'.$pid->category_image));
         return back()->with('success', "Product Deleted Permanently");
     }
 }
