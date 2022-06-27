@@ -31,6 +31,7 @@ return new class extends Migration
             $table->integer('status')->default(1);
             $table->integer('is_slider_show')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -25,7 +25,8 @@ class AdminProductController extends Controller
     public function index()
     {
         //
-        return view('admin.products.index');
+        $products = Products::all();
+        return view('admin.products.index', compact('products'));
     }
 
     /**
@@ -181,5 +182,32 @@ class AdminProductController extends Controller
     public function destroy($id)
     {
         //
+        $find = Products::find($id);
+        if($find == null){
+            return abort(404);
+        }
+        $find->delete();
+        return back()->with('success', 'Product has been deleted successfully');
+
+    }
+    public function status($id){
+        $find_cat = Products::find($id);
+        if($find_cat == null){
+            return abort(404);
+        }
+        if($find_cat->status == 1){
+            $find_cat->status = 0;
+            $find_cat->save();
+            return back()->with('success', 'Status Updated');
+        }else{
+            $find_cat->status = 1;
+            $find_cat->save();
+            return back()->with('success', 'Status Updated');
+        }
+    }
+
+    public function ProductTrashList(){
+        $trashProducts = Products::onlyTrashed()->get();
+        return view('admin.products.trash',compact('trashProducts'));
     }
 }

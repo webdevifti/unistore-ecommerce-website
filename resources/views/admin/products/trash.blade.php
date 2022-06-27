@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title','Manage Products')
+@section('title','Manage Trash Products')
 @section('admin_content')
 <!--breadcrumb-->
 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -9,13 +9,13 @@
                 <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                 </li>
                 <li class="breadcrumb-item" aria-current="page">Products</li>
-                <li class="breadcrumb-item active" aria-current="page">Manage Products</li>
+                <li class="breadcrumb-item active" aria-current="page">Trash Products</li>
             </ol>
         </nav>
     </div>
     <div class="ms-auto">
         <div class="btn-group">
-            <a href="{{ route('admin.manage-products.create') }}" class="btn btn-primary">Add new product</a>
+            <a href="{{ route('admin.manage-products.index') }}" class="btn btn-primary">Go Back</a>
         </div>
     </div>
 </div>
@@ -23,7 +23,7 @@
 <div class="card">
     <div class="card-body">
         <div class="card-title">
-            <h4 class="mb-0">Product Data</h4>
+            <h4 class="mb-0">Trash Product Data</h4>
         </div>
         <hr/>
         <div class="table-responsive">
@@ -35,7 +35,6 @@
                         <th>Quantity</th>
                         <th>Selling Price</th>
                         <th>Regular Price</th>
-                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -43,7 +42,7 @@
                     @php
                         $sl = 0;
                     @endphp
-                    @foreach ($products as $item)
+                    @foreach ($trashProducts as $item)
                         @php
                             $sl++;
                         @endphp
@@ -53,16 +52,10 @@
                         <td>{{ $item->qty }}</td>
                         <td>{{ $item->selling_price }}</td>
                         <td>{{ $item->regular_price }}</td>
+                       
                         <td>
-                            @if($item->status == 1)
-                                <a href="{{ route('admin.product.status',$item->id) }}" class="btn btn-success btn-sm">Active</a>
-                            @else 
-                                <a href="{{ route('admin.product.status',$item->id) }}" class="btn btn-secondary btn-sm">Deactive</a>
-                            @endif
-                        </td>
-                        <td>
-                            <a href="" class="btn btn-info btn-sm"><i class="fadeIn animated bx bx-edit-alt"></i></a>
-                            <a href="{{ route('admin.product.trash', $item->id) }}" class="btn btn-danger btn-sm"><i class="fadeIn animated bx bx-trash"></i></a>
+                            <a href="" class="btn btn-info btn-sm">Restore</a>
+                            <a href="{{ route('admin.product.delete', $item->id) }}" class="btn btn-danger btn-sm">Permanent Delete</a>
                         </td>
                        
                     </tr>
