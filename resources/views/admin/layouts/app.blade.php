@@ -95,7 +95,7 @@
 					<ul>
 						<li> <a href="{{ route('admin.manage-products.index') }}"><i class="bx bx-right-arrow-alt"></i>Manage Products</a>
 						<li> <a href="{{ route('admin.manage-products.create') }}"><i class="bx bx-right-arrow-alt"></i>Add New Product</a>
-						<li> <a href="{{ route('admin.product.trash.list') }}"><i class="bx bx-right-arrow-alt"></i>Product Trashed <span class="trash-count">1</span></a>
+						<li> <a href="{{ route('admin.product.trash.list') }}"><i class="bx bx-right-arrow-alt"></i>Product Trashed {{ (getProductTrashCount() > 0 ? '<span class="trash-count">'.getProductTrashCount().'</span>' : '') }}</a>
 						</li>
 					</ul>
 				

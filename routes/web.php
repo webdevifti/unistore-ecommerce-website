@@ -46,10 +46,19 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function(){
             '/manage-tags' => AdminTagController::class,
         ]);
 
-        // Product Routes
+        // Product Status change
         Route::get('/manage-product/status/{id}', [AdminProductController::class, 'status'])->name('product.status');
+
+        // Send to trash
         Route::get('/manage-product/t/{id}', [AdminProductController::class, 'destroy'])->name('product.trash');
+
+        // Permanent Delete
         Route::get('/manage-product/delete/{id}', [AdminProductController::class, 'permanentDelete'])->name('product.delete');
+
+        // restore from trash
+        Route::get('/manage-product/restore/{id}', [AdminProductController::class, 'restore'])->name('product.restore');
+
+        // Trash list
         Route::get('/manage-product/trash/list', [AdminProductController::class, 'ProductTrashList'])->name('product.trash.list');
 
 

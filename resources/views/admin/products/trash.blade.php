@@ -54,7 +54,7 @@
                         <td>{{ $item->regular_price }}</td>
                        
                         <td>
-                            <a href="" class="btn btn-info btn-sm">Restore</a>
+                            <a href="{{ route('admin.product.restore', $item->id) }}" class="btn btn-info btn-sm">Restore</a>
                             <a href="{{ route('admin.product.delete', $item->id) }}" class="btn btn-danger btn-sm">Permanent Delete</a>
                         </td>
                        

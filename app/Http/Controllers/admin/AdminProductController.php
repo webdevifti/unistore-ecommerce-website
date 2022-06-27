@@ -187,7 +187,7 @@ class AdminProductController extends Controller
             return abort(404);
         }
         $find->delete();
-        return back()->with('success', 'Product has been deleted successfully');
+        return back()->with('success', 'Product has been Trashed successfully');
 
     }
     public function status($id){
@@ -209,5 +209,18 @@ class AdminProductController extends Controller
     public function ProductTrashList(){
         $trashProducts = Products::onlyTrashed()->get();
         return view('admin.products.trash',compact('trashProducts'));
+    }
+
+    public function restore($id){
+        Products::onlyTrashed()->find($id)->restore();
+        return back()->with('success', "Product restored. Go to Product page");
+    }
+    public function permanentDelete($id){
+        // $pid = Products::onlyTrashed()->find($id);
+         Products::onlyTrashed()->find($id)->forceDelete();
+        //  $subcat = SubCategory::where('category_id', $id)->first();
+        //  $subcat->delete();
+        // unlink(public_path('uploads/categories/'.$pid->category_image));
+        return back()->with('success', "Product Deleted Permanently");
     }
 }
