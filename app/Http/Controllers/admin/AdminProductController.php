@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\ProductBrand;
 use App\Models\ProductImages;
 use App\Models\Products;
+use App\Models\ProductSpecification;
 use App\Models\ProductTag;
 use App\Models\ProductTagTable;
 use Carbon\Carbon;
@@ -51,13 +52,14 @@ class AdminProductController extends Controller
     public function store(ProductRequest $request)
     {
         //
-        try{
+     dd($request->all());
+       try{
             $discount_price = ($request->discount * $request->regular_price) / 100;
             $discounted = $request->regular_price - $discount_price;
             $sku = rand(11111111,99999999);
             $last_id = Products::insertGetId([
-                'category_id',
-                'brand_id',
+                'category_id' => $request->category,
+                'brand_id' => $request->brand,
                 'sku' => $sku,
                 'product_name' => $request->product_name,
                 'slug' => Str::slug($request->product_name),
@@ -86,8 +88,6 @@ class AdminProductController extends Controller
                     $prp->thumbnail = $imageName;
                     $prp->save();
                     $request->product_thumbnail->move(public_path('uploads/products/thumbnails/'), $imageName);
-                }else{
-                    return back()->with('error','Something wrong');
                 }
                 if($request->product_images)
                 {
@@ -103,8 +103,6 @@ class AdminProductController extends Controller
                             'image' => $name
                         ]);
                     }
-                }else{
-                    return back()->with('error','Something wrong');
                 }
                 if($request->tags){
                     foreach($request->tags as $tag){
@@ -113,12 +111,13 @@ class AdminProductController extends Controller
                             'tag_id' => $tag
                         ]);
                     }
-                }else{
-                    return back()->with('error','Something wrong');
                 }
+
+                ProductSpecification::create([
+                    'product_id' => $last_id,
+                    
+                ]);
                
-            }else{
-                return back()->with('error','Something wrong');
             }
             return back()->with('success','Product has been added successfully');
         }catch(Exception){

@@ -25,10 +25,9 @@ return new class extends Migration
             $table->integer('discount')->nullable();
             $table->integer('discounted_price')->nullable();
             $table->integer('stock_alert')->nullable();
-            $table->integer('regular_price');
-            $table->integer('selling_price');
-            $table->longText('specification');
-            $table->longText('description');
+            $table->integer('regular_price')->nullable();
+            $table->integer('selling_price')->nullable();
+            $table->longText('description')->nullable();
             $table->integer('status')->default(1);
             $table->integer('is_slider_show')->default(0);
             $table->timestamps();

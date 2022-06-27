@@ -45,12 +45,13 @@
                         <hr>
                         <form class="row g-3" action="{{ route('admin.manage-products.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <div class="col-md-6">
+                        
+                          <div class="col-md-6">
                                 <label for="inputFirstName" class="form-label">Product Name</label>
-                                <input type="text" placeholder="Product Name" class="form-control @error('product_name') is-invalid @enderror" id="inputFirstName" name="product_name">
+                                <input type="text" value="{{ old('product_name') }}" placeholder="Product Name" class="form-control @error('product_name') is-invalid @enderror" id="inputFirstName" name="product_name">
                                @error('product_name') <div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
-                            <div class="col-md-6">
+                             <div class="col-md-6">
                                 <label for="inputCat" class="form-label">Product Category</label>
                                 <select id="inputCat" name="category" class="form-select @error('category') is-invalid @enderror">
                                     <option value="">Choose Category...</option>
@@ -60,7 +61,7 @@
                                 </select>
                                 @error('category')<div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
-                            <div class="col-md-6">
+                         <div class="col-md-6">
                                 <label for="inputBrand" class="form-label">Product Brand</label>
                                 <select id="inputBrand" name="brand" class="form-select @error('brand') is-invalid @enderror">
                                     <option  value="">Choose Brand Name...</option>
@@ -70,7 +71,7 @@
                                 </select>
                                 @error('brand')<div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
-                            <div class="col-md-6">
+                           <div class="col-md-6">
                                 <label for="inputTags" class="form-label">Product Tags</label>
                                 <select class="multiple-select @error('tags') is-invalid @enderror"  data-placeholder="Choose Tags" multiple="multiple" name="tags[]">
                                     <option value="">Choose Tags...</option>
@@ -82,33 +83,33 @@
                             </div>
                             <div class="col-md-3">
                                 <label for="inputqty" class="form-label">Product Quantity</label>
-                                <input type="number" min="0" placeholder="Product Quantity" class="form-control @error('qty') is-invalid @enderror" id="inputqty" name="qty">
+                                <input type="number" value="{{ old('qty') }}" min="0" placeholder="Product Quantity" class="form-control @error('qty') is-invalid @enderror" id="inputqty" name="qty">
                                 @error('qty')<div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
-                            <div class="col-md-3">
+                             <div class="col-md-3">
                                 <label for="inputrp" class="form-label">Product Regular Price</label>
-                                <input type="number" min="0" placeholder="Regular or Buying Price" class="form-control @error('regular_price') is-invalid @enderror" id="inputrp" name="regular_price">
+                                <input type="number" min="0" value="{{ old('regular_price') }}" placeholder="Regular or Buying Price" class="form-control @error('regular_price') is-invalid @enderror" id="inputrp" name="regular_price">
                                 @error('regular_price')<div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
-                            <div class="col-md-3">
+                          <div class="col-md-3">
                                 <label for="inputd" class="form-label">Price Dicount in (%)</label>
-                                <input type="number" min="0"  placeholder="Dicount (optional)" class="form-control" id="inputd" name="discount">
+                                <input type="number" min="0"  placeholder="Dicount (optional)" class="form-control" id="inputd" value="{{ old('discount') }}" name="discount">
                                 <span class="text-primary">If you add dicount product price will consider with dicounted price</span>
                             </div>
-                            <div class="col-md-3">
+                             <div class="col-md-3">
                                 <label for="inputsp" class="form-label">Selling Price</label>
-                                <input type="number" min="0"  placeholder="Selling Price" class="form-control" id="inputsp" name="selling_price">
+                                <input type="number" min="0" value="{{ old('selling_price') }}" placeholder="Selling Price" class="form-control" id="inputsp" name="selling_price">
                             </div>
-                            <div class="col-md-3 mt-3">
+                          <div class="col-md-3 mt-3">
                                 <label class="custom-file-label" for="inputGroupFile01">Choose Product Thumbnail</label>
-                                <input type="file" oninput="pic.src=window.URL.createObjectURL(this.files[0])" name="product_thumbnail" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                <input type="file" oninput="pic.src=window.URL.createObjectURL(this.files[0])" name="product_thumbnail" id="inputGroupFile01">
                                 
-                            </div>
-                            <img style="height: 100px;width: 150px;object-fit:cover;" id="pic" alt="">
                                 @error('product_thumbnail')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                @enderror
-                            <div class="col-12">
+                            </div>
+                            <img style="height: 100px;width: 150px;object-fit:cover;" id="pic" alt="">
+                             <div class="col-12">
                                 <div class="card radius-15">
                                     <div class="card-body">
                                         <div class="card-title">
@@ -116,7 +117,10 @@
                                         </div>
                                         <hr/>
                                   
-                                            <input id="image-uploadify" name="product_images[]" type="file" accept="image/*" multiple>
+                                            <input name="product_images[]" type="file">
+                                            <input name="product_images[]" type="file">
+                                            <input name="product_images[]" type="file">
+                                            <input name="product_images[]" type="file">
                                            
                                        
                                     </div>
@@ -125,20 +129,20 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                                @enderror
                             </div>
-                            <div class="col-12 mb-4">
+                             <div class="col-12 mb-4">
                                 <label for="inputdesc" class="form-label">Product Short Description</label>
-                                <textarea name="short_des" id="inputdesc" cols="30" rows="10" placeholder="Product Short Description" class="form-control"></textarea>
+                                <textarea name="short_des" id="inputdesc" cols="30" rows="10" placeholder="Product Short Description" class="form-control">{{ old('short_des') }}</textarea>
                                 @error('short_des')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                @enderror
                             </div>
-                            <div class="col-12 mb-4">
-                                <label for="inputspeci" class="form-label">Product Specification</label>
-                                <textarea name="specification" id="inputspeci" cols="30" rows="10" placeholder="Product Short Description" class="form-control"></textarea>
-                                @error('specification')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                               @enderror
-                            </div>
+                            <h3>Product Specifications</h3> 
+
+                            <label for="os">Operating system</label>
+                            <input type="text" id="os" placeholder="Operating system" class="form-control" name="os" value="{{ old('os') }}">
+                            <label for="pcsr">Proccessor</label>
+                            <input type="text" id="pcsr" placeholder="Proccessor" class="form-control" name="pcsr" value="{{ old('pcsr') }}">
+                           
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary px-5">Submit</button>
                             </div>

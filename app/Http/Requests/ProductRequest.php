@@ -32,9 +32,7 @@ class ProductRequest extends FormRequest
             'qty' => 'required',
             'regular_price' => 'required',
             'product_thumbnail' => 'required|mimes:png,jpg,jpeg',
-            'product_images' => 'required|mimes:png,jpeg,jpg',
-            'short_des' => 'required',
-            'specification' => 'required'
+            
         ]; 
     }
 }
