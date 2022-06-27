@@ -62,7 +62,24 @@
                         </td>
                         <td>
                             <a href="" class="btn btn-info btn-sm"><i class="fadeIn animated bx bx-edit-alt"></i></a>
-                            <a href="{{ route('admin.product.trash', $item->id) }}" class="btn btn-danger btn-sm"><i class="fadeIn animated bx bx-trash"></i></a>
+                            <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-danger btn-sm"><i class="fadeIn animated bx bx-trash"></i></button>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">Are You Sure. You can restore from trash bin .</div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <a href="{{ route('admin.product.trash', $item->id) }}" class="btn btn-primary">
+                                                Delete
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                        
                     </tr>

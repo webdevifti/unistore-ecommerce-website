@@ -230,10 +230,10 @@ class AdminProductController extends Controller
             ProductSpecification::where('product_id',$pid->id)->delete();
          }
          $p_img = ProductImages::where('product_id', $pid->id)->get();
-         $product_images=$p_img->images()->get();
+        //  $product_images=$p_img->images()->get();
          foreach($p_img as $img){
             ProductImages::where('product_id',$pid->id)->delete();
-            $image_path = public_path('uploads/products/images/'.$product_images->image);
+            $image_path = public_path('uploads/products/images/'.$img->image);
             File::delete($image_path);
          }
         
