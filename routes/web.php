@@ -53,7 +53,7 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function(){
         Route::get('/manage-product/t/{id}', [AdminProductController::class, 'destroy'])->name('product.trash');
 
         // Permanent Delete
-        Route::get('/manage-product/delete/{id}', [AdminProductController::class, 'permanentDelete'])->name('product.delete');
+        Route::get('/manage-product/permanent-delete/{id}', [AdminProductController::class, 'permanentDelete'])->name('product.delete');
 
         // restore from trash
         Route::get('/manage-product/restore/{id}', [AdminProductController::class, 'restore'])->name('product.restore');

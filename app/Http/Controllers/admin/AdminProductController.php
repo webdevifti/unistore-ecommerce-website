@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class AdminProductController extends Controller
 {
@@ -216,23 +217,28 @@ class AdminProductController extends Controller
         return back()->with('success', "Product restored. Go to Product page");
     }
     public function permanentDelete($id){
-        
-         $p_tags = ProductTagTable::where('product_id', $id)->get();
+        $pid = Products::onlyTrashed()->find($id);
+     
+         $p_tags = ProductTagTable::where('product_id', $pid->id)->get();
+    //   dd($p_tags);
          foreach($p_tags as $t){
-            ProductTagTable::find($t->product_id)->delete();
+            ProductTagTable::where('product_id',$pid->id)->delete();
          }
-         $p_specification = ProductSpecification::where('product_id', $id)->get();
+         $p_specification = ProductSpecification::where('product_id', $pid->id)->get();
+    
          foreach($p_specification as $sp){
-            ProductSpecification::find($sp->product_id)->delete();
+            ProductSpecification::where('product_id',$pid->id)->delete();
          }
-         $p_img = ProductImages::where('product_id', $id)->get();
+         $p_img = ProductImages::where('product_id', $pid->id)->get();
+         $product_images=$p_img->images()->get();
          foreach($p_img as $img){
-            ProductImages::find($img->product_id)->delete();
-            unlink(public_path('/uploads/products/images/'.$img->image));
+            ProductImages::where('product_id',$pid->id)->delete();
+            $image_path = public_path('uploads/products/images/'.$product_images->image);
+            File::delete($image_path);
          }
-         $pid = Products::onlyTrashed()->find($id);
-         unlink(public_path('uploads/products/thumbnails/'.$pid->thumbnail));
+        
          Products::onlyTrashed()->find($id)->forceDelete();
+         unlink(public_path('uploads/products/thumbnails/'.$pid->thumbnail));
         return back()->with('success', "Product Deleted Permanently");
     }
 }
