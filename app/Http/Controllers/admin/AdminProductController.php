@@ -52,7 +52,7 @@ class AdminProductController extends Controller
     public function store(ProductRequest $request)
     {
         //
-     dd($request->all());
+    //  dd($request->all());
        try{
             $discount_price = ($request->discount * $request->regular_price) / 100;
             $discounted = $request->regular_price - $discount_price;
@@ -69,7 +69,6 @@ class AdminProductController extends Controller
                 'stock_alert' => 5,
                 'regular_price' => $request->regular_price,
                 'selling_price' => $request->selling_price,
-                'specification' => $request->specification,
                 'description' => $request->short_des,
                 'created_at' => Carbon::now()
             ]);
@@ -115,7 +114,21 @@ class AdminProductController extends Controller
 
                 ProductSpecification::create([
                     'product_id' => $last_id,
-                    
+                    'os' => $request->os,
+                    'processor' => $request->pcsr,
+                    'processor_tech' => $request->pcsrt,
+                    'graphics' => $request->graphics,
+                    'memory' => $request->memory,
+                    'hard_drive' => $request->hard_drive,
+                    'wireless' => $request->wl,
+                    'power_supply' => $request->ps,
+                    'battery' => $request->battery,
+                    'back_cemara' => $request->bc,
+                    'front_cemara' => $request->fc,
+                    'fingerprint' => $request->fingerprint,
+                    'sensor' => $request->sensor,
+                    'bluetooth' => $request->blth,
+                    'other' => $request->other,
                 ]);
                
             }
