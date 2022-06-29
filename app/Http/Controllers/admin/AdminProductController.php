@@ -164,12 +164,13 @@ class AdminProductController extends Controller
         $getCategory = Category::where('status',1)->orderBy('category_name','ASC')->get();
         $getTags = ProductTag::where('status',1)->orderBy('tag_name','ASC')->get();
         $findTag = ProductTagTable::where('product_id',$id)->get();
-        
+        $p_specifications = ProductSpecification::where('product_id', $id)->get();
+        $getProductImages = ProductImages::where('product_id', $id)->get();
         $getProduct = Products::find($id);
         if($getProduct == null){
             return abort(404);
         }
-        return view('admin.products.edit', compact('findTag','getProduct','getBrandsName','getCategory','getTags'));
+        return view('admin.products.edit', compact('getProductImages','p_specifications','findTag','getProduct','getBrandsName','getCategory','getTags'));
     }
 
     /**
