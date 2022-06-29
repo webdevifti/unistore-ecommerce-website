@@ -160,6 +160,16 @@ class AdminProductController extends Controller
     public function edit($id)
     {
         //
+        $getBrandsName = ProductBrand::where('status',1)->orderBy('brand_name','ASC')->get();
+        $getCategory = Category::where('status',1)->orderBy('category_name','ASC')->get();
+        $getTags = ProductTag::where('status',1)->orderBy('tag_name','ASC')->get();
+        $findTag = ProductTagTable::where('product_id',$id)->get();
+        
+        $getProduct = Products::find($id);
+        if($getProduct == null){
+            return abort(404);
+        }
+        return view('admin.products.edit', compact('findTag','getProduct','getBrandsName','getCategory','getTags'));
     }
 
     /**

@@ -69,7 +69,7 @@
                             @endif
                         </td>
                         <td>
-                            <a href="" class="btn btn-info btn-sm"><i class="fadeIn animated bx bx-edit-alt"></i></a>
+                            <a href="{{ route('admin.manage-products.edit', $item->id) }}" class="btn btn-info btn-sm"><i class="fadeIn animated bx bx-edit-alt"></i></a>
                             <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-danger btn-sm"><i class="fadeIn animated bx bx-trash"></i></button>
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
                                 <div class="modal-dialog">
