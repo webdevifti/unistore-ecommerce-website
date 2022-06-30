@@ -76,16 +76,6 @@
                                 <label for="inputTags" class="form-label">Product Tags</label>
                                 <select class="multiple-select @error('tags') is-invalid @enderror"  data-placeholder="Choose Tags" multiple="multiple" name="tags[]">
                                     <option value="">Choose Tags...</option>
-                                       
-                                  
-                                        @foreach($getTags as $tag)
-                                        @php
-                                            $a = App\Models\ProductTagTable::where('tag_id', $tag->id)->where('product_id', $getProduct->id)->get();
-                                        @endphp
-                                            @foreach($a as $t)
-                                                <option {{ ($t->product_id == $getProduct->id ? 'selected':'') }} value="{{ $tag->id }}">{{ $tag->tag_name }}</option>
-                                            @endforeach
-                                        @endforeach
                                       
                                 </select>
                                 @error('tags')<div class="invalid-feedback">{{ $message }}</div>@enderror
