@@ -59,6 +59,17 @@ class AdminProductController extends Controller
             $discount_price = ($request->discount * $request->regular_price) / 100;
             $discounted = $request->regular_price - $discount_price;
             $sku = rand(11111111,99999999);
+            // if($request->tags){
+            //     foreach($request->tags as $tag){
+            //         Products::create([
+            //             'tags' => $tag
+            //         ]);
+            //         // $t = $tag;
+                   
+            //     }
+            // }
+           
+
             $last_id = Products::insertGetId([
                 'category_id' => $request->category,
                 'brand_id' => $request->brand,
@@ -72,6 +83,7 @@ class AdminProductController extends Controller
                 'regular_price' => $request->regular_price,
                 'selling_price' => $request->selling_price,
                 'description' => $request->short_des,
+               
                 'created_at' => Carbon::now()
             ]);
             if($last_id){
@@ -105,15 +117,7 @@ class AdminProductController extends Controller
                         ]);
                     }
                 }
-                if($request->tags){
-                    foreach($request->tags as $tag){
-                        ProductTagTable::create([
-                            'product_id' => $last_id,
-                            'tag_id' => $tag
-                        ]);
-                    }
-                }
-
+               
                 ProductSpecification::create([
                     'product_id' => $last_id,
                     'os' => $request->os,

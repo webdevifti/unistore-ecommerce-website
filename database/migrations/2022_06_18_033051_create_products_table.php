@@ -29,6 +29,7 @@ return new class extends Migration
             $table->integer('selling_price')->nullable();
             $table->longText('description')->nullable();
             $table->integer('status')->default(1);
+            $table->text('tags');
             $table->integer('is_slider_show')->default(0);
             $table->timestamps();
             $table->softDeletes();
