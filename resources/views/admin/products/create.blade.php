@@ -76,7 +76,7 @@
                                 <select class="multiple-select @error('tags') is-invalid @enderror"  data-placeholder="Choose Tags" multiple="multiple" name="tags[]">
                                     <option value="">Choose Tags...</option>
                                     @foreach($getTags as $tag)
-                                        <option value="{{ $tag->id }}">{{ $tag->tag_name }}</option>
+                                        <option value="{{ $tag->tag_name }}">{{ $tag->tag_name }}</option>
                                     @endforeach
                                 </select>
                                 @error('tags')<div class="invalid-feedback">{{ $message }}</div>@enderror

@@ -76,8 +76,9 @@
                                 <label for="inputTags" class="form-label">Product Tags</label>
                                 <select class="multiple-select @error('tags') is-invalid @enderror"  data-placeholder="Choose Tags" multiple="multiple" name="tags[]">
                                     <option value="">Choose Tags...</option>
-                                   
-                                      
+                                    @foreach($getTags as $key=>$tag)
+                                        <option value=""></option>
+                                    @endforeach
                                 </select>
                                 @error('tags')<div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>

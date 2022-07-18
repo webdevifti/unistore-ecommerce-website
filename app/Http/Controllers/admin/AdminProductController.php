@@ -53,21 +53,11 @@ class AdminProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        //
-    //  dd($request->all());
        try{
             $discount_price = ($request->discount * $request->regular_price) / 100;
             $discounted = $request->regular_price - $discount_price;
             $sku = rand(11111111,99999999);
-            // if($request->tags){
-            //     foreach($request->tags as $tag){
-            //         Products::create([
-            //             'tags' => $tag
-            //         ]);
-            //         // $t = $tag;
-                   
-            //     }
-            // }
+            
            
 
             $last_id = Products::insertGetId([
@@ -86,7 +76,20 @@ class AdminProductController extends Controller
                
                 'created_at' => Carbon::now()
             ]);
+           
             if($last_id){
+                if($request->tags){
+                    $p = Products::find($last_id);
+                    
+                    foreach($request->tags as $tag){
+                        // Products::create([
+                        //     'tags' => $tag
+                        // ]);
+                        $p->tags = implode(',',$request->tags);
+                        
+                    }
+                    $p->save();
+                }
                 if($request->product_thumbnail){
                     $request->validate([
                         'product_thumbnail' => 'mimes:jpg,png,jpeg'
@@ -166,15 +169,19 @@ class AdminProductController extends Controller
         //
         $getBrandsName = ProductBrand::where('status',1)->orderBy('brand_name','ASC')->get();
         $getCategory = Category::where('status',1)->orderBy('category_name','ASC')->get();
-        $getTags = ProductTag::where('status',1)->orderBy('tag_name','ASC')->get();
-        $findTag = ProductTagTable::where('product_id',$id)->get();
+        $getTags = Products::select('tags')->where('id',$id)->where('status',1)->orderBy('tags','ASC')->get();
+        // foreach($getTags as $t){
+        //     $tags = ProductTag::where('tag_name', $t->tags)->get();
+        //     dd($tags);
+        // }
+        // dd($getTags);
         $p_specifications = ProductSpecification::where('product_id', $id)->get();
         $getProductImages = ProductImages::where('product_id', $id)->get();
         $getProduct = Products::find($id);
         if($getProduct == null){
             return abort(404);
         }
-        return view('admin.products.edit', compact('getProductImages','p_specifications','findTag','getProduct','getBrandsName','getCategory','getTags'));
+        return view('admin.products.edit', compact('getProductImages','p_specifications','getProduct','getBrandsName','getCategory','getTags'));
     }
 
     /**
