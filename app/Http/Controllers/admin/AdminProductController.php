@@ -169,7 +169,11 @@ class AdminProductController extends Controller
         //
         $getBrandsName = ProductBrand::where('status',1)->orderBy('brand_name','ASC')->get();
         $getCategory = Category::where('status',1)->orderBy('category_name','ASC')->get();
-        $getTags = Products::select('tags')->where('id',$id)->where('status',1)->orderBy('tags','ASC')->get();
+        $getTags = ProductTag::where('status',1)->orderBy('tag_name', 'ASC')->get();
+        $getProductTags = Products::where('id',$id)->where('status',1)->orderBy('tags','ASC')->first();
+        $str_arr = explode (",", $getProductTags->tags); 
+        
+        // dd($str_arr);
         // foreach($getTags as $t){
         //     $tags = ProductTag::where('tag_name', $t->tags)->get();
         //     dd($tags);
@@ -181,7 +185,7 @@ class AdminProductController extends Controller
         if($getProduct == null){
             return abort(404);
         }
-        return view('admin.products.edit', compact('getProductImages','p_specifications','getProduct','getBrandsName','getCategory','getTags'));
+        return view('admin.products.edit', compact('getProductImages','p_specifications','getProduct','getBrandsName','getCategory','getTags','str_arr'));
     }
 
     /**
