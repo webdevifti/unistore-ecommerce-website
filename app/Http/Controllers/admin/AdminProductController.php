@@ -217,7 +217,7 @@ class AdminProductController extends Controller
                 $image_path = public_path('uploads/products/thumbnails/'.$prp->thumbnail);
                 if (file_exists($image_path)) {
                     unlink($image_path);
-                    $request->product_thumbnail->move(public_path('uploads/products/thumbnails/'), $imageName);
+                    // $request->product_thumbnail->move(public_path('uploads/products/thumbnails/'), $imageName);
                 }
                 $request->product_thumbnail->move(public_path('uploads/products/thumbnails/'), $imageName);
                 $prp->category_id = $request->category;
@@ -247,7 +247,7 @@ class AdminProductController extends Controller
                         $image_path = public_path('uploads/products/images/'.$imgID->image);
                         if (file_exists($image_path)) {
                             unlink($image_path);
-                            $image->move(public_path('uploads/products/images/'), $name);
+                            // $image->move(public_path('uploads/products/images/'), $name);
                         }
                         $image->move(public_path().'/uploads/products/images/', $name);
                         $imgID->image = $name;
@@ -290,8 +290,7 @@ class AdminProductController extends Controller
                     }
                     $p->save();
                 }
-             return back()->with('success','Product has been updated successfully');
-               
+                return back()->with('success', 'Product has been updated successfully');
             }else{
                 $prp->category_id = $request->category;
                 $prp->brand_id = $request->brand;
@@ -330,7 +329,7 @@ class AdminProductController extends Controller
                         $image_path = public_path('uploads/products/images/'.$imgID->image);
                         if (file_exists($image_path)) {
                             unlink($image_path);
-                            $image->move(public_path('uploads/products/images/'), $name);
+                            // $image->move(public_path('uploads/products/images/'), $name);
                         }
                         $image->move(public_path().'/uploads/products/images/', $name);
                         $imgID->image = $name;
