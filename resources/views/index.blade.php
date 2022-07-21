@@ -131,71 +131,30 @@
     </div>
     <hr class="offset-lg">
     <hr class="offset-lg">
-
+    @if($newProducts->count() > 0)
     <div class="container">
       <h2>NEW PRODUCTS</h2>
       <hr class="offset-md">
 
       <div class="row products">
+        @foreach($newProducts as $np)
         <div class="col-sm-6 col-md-4 product">
           <a href="#favorites" class="favorites" data-favorite="inactive"><i class="ion-ios-heart-outline"></i></a>
-          <a href="./"><img src="../assets/img/products/surface-pro.jpg" alt="Surface Pro"/></a>
+          <a href="./"><img src="{{ asset('uploads/products/thumbnails/'.$np->thumbnail) }}" alt="Surface Pro"/></a>
 
           <div class="content">
-            <h1 class="h4">Surface Pro</h1>
-            <p class="price">$199.99</p>
-            <label>Hybrid</label>
+            <h1 class="h4">{{ $np->product_name }}</h1>
+            <p class="price">tk {{ $np->regular_price }}</p>
+            <label>{{ $np->relation_with_category->category_name}}</label>
 
-            <a href="../catalog/product.html" class="btn btn-link"> Details</a>
+            <a href="{{ route('product.page',$np->slug) }}" class="btn btn-link"> Details</a>
             <button class="btn btn-primary btn-rounded btn-sm"> <i class="ion-bag"></i> Add to cart</button>
           </div>
         </div>
-
-        <div class="col-sm-6 col-md-4 product">
-          <a href="#favorites" class="favorites" data-favorite="inactive"><i class="ion-ios-heart-outline"></i></a>
-          <a href="./"><img src="../assets/img/products/lenovo-yoga.jpg" alt="Lenovo Yoga"/></a>
-
-          <div class="content">
-            <h1 class="h4">Lenovo Yoga</h1>
-            <p class="price">$199.99</p>
-            <label>Hybrid</label>
-
-            <a href="../catalog/product.html" class="btn btn-link"> Details</a>
-            <button class="btn btn-primary btn-rounded btn-sm"> <i class="ion-bag"></i> Add to cart</button>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-md-4 product">
-          <a href="#favorites" class="favorites" data-favorite="inactive"><i class="ion-ios-heart-outline"></i></a>
-          <a href="./"><img src="../assets/img/products/asus-transformer.jpg" alt="ASUS Transformer"/></a>
-
-          <div class="content">
-            <h1 class="h4">ASUS Transformer</h1>
-            <p class="price">$199.99</p>
-            <label>Hybrid</label>
-
-            <a href="../catalog/product.html" class="btn btn-link"> Details</a>
-            <button class="btn btn-primary btn-rounded btn-sm"> <i class="ion-bag"></i> Add to cart</button>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-md-4 product hidden-md hidden-lg">
-          <a href="#favorites" class="favorites" data-favorite="inactive"><i class="ion-ios-heart-outline"></i></a>
-          <a href="./"><img src="../assets/img/products/mi-pad-2.jpg" alt="Mi Pad 2/"></a>
-
-          <div class="content">
-            <h1 class="h4">Mi Pad 2</h1>
-            <p class="sale">$199.99</p>
-            <p class="price through">$249.99</p>
-            <label>Tablets</label>
-
-            <a href="../catalog/product.html" class="btn btn-link"> Details</a>
-            <button class="btn btn-primary btn-rounded btn-sm"> <i class="ion-bag"></i> Add to cart</button>
-          </div>
-        </div>
+        @endforeach
       </div>
     </div>
-
+    @endif
     <div class="container">
       <h2>RECOMMENDATION FOR YOU</h2>
       <hr class="offset-md">

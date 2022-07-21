@@ -29,7 +29,7 @@ Route::get('/customer/signup', [PageController::class, 'signup'])->name('signup.
 Route::get('/cart', [PageController::class, 'cart'])->name('cart.page');
 Route::get('/checkout', [PageController::class, 'checkout'])->name('checkout.page');
 Route::get('/faq', [PageController::class, 'faq'])->name('faq.page');
-Route::get('/product/show', [PageController::class, 'singleProduct'])->name('product.page');
+Route::get('/product/{slug}', [PageController::class, 'singleProduct'])->name('product.page');
 // Route::get('/', function () {
 //     return view('index');
 // });

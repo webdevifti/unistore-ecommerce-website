@@ -76,21 +76,11 @@
               <!-- <button class="btn btn-control"></button> -->
 
               <div class="items">
+                @foreach($product_images as $img)
                 <div class="item active" data-marker="1">
                   <img src="../assets/img/product/1.jpg" alt="ChromeBook 11"/>
                 </div>
-                <div class="item" data-marker="2">
-                  <img src="../assets/img/product/2.jpg" alt="ChromeBook 11"/>
-                </div>
-                <div class="item" data-marker="3">
-                  <img src="../assets/img/product/3.jpg" alt="ChromeBook 11"/>
-                </div>
-                <div class="item" data-marker="4">
-                  <img src="../assets/img/product/4.jpg" alt="ChromeBook 11"/>
-                </div>
-                <div class="item" data-marker="5">
-                  <img src="../assets/img/product/5.jpg" alt="ChromeBook 11"/>
-                </div>
+                @endforeach
                 <div class="item" data-marker="6">
                   <div class="tiles">
                     <a href="#video" data-gallery="#video" data-source="youtube" data-id="hED0N4CFoqs" data-title="An upscale new Chromebook from HP" data-description="The new HP Chromebook 13 runs a Core M CPU inside a slim aluminum body.">
@@ -111,19 +101,16 @@
               </div>
 
               <ul class="markers">
+                @foreach($product_images as $img2)
                 <li data-marker="1" class="active"><img src="../assets/img/product/1.jpg" alt="Background"/></li>
-                <li data-marker="2"><img src="../assets/img/product/2.jpg" alt="Background"/></li>
-                <li data-marker="3"><img src="../assets/img/product/3.jpg" alt="Background"/></li>
-                <li data-marker="4"><img src="../assets/img/product/4.jpg" alt="Background"/></li>
-                <li data-marker="5"><img src="../assets/img/product/5.jpg" alt="Background"/></li>
-                <li data-marker="6"><img src="../assets/img/product/video.jpg" alt="Background"/></li>
+                @endforeach
               </ul>
             </div>
           </div>
           <div class="col-sm-5 col-md-5">
             <img src="../assets/img/brands/hp.png" alt="HP" class="brand hidden-xs" />
 
-            <h1>HP Chromebook 11</h1>
+            <h1>{{ $product->product_name }}</h1>
 
             <p> &middot; Chrome OS™</p>
             <p> &middot; Intel® Celeron® processor</p>
@@ -141,12 +128,10 @@
 
 	    	<div class="row">
 	    		<div class="col-sm-7">
-	    			<h1>HP Chromebook 11</h1>
+	    			<h1>{{ $product->product_name }}</h1>
 		    		 <br>
 
-		    		 <p>
-		    		 	The stylish HP Chromebook provides a speedy connection to your protected online content and automatically updated apps, all within an ultra-thin full-sized notebook, providing a comfortable gateway to surf, socialize and play.
-		    		 </p>
+		    		{{ $product->description }}
 		    		 <br>
 
              <h2>Product specifications</h2>
