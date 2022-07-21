@@ -80,7 +80,7 @@
                                     
                                     @foreach($getTags as $key=>$tag)
                                     
-                                        <option value="{{ $tag->id }}" {{ (in_array($tag->tag_name,$str_arr) ? 'selected':'') }}>{{ $tag->tag_name }}</option>
+                                        <option value="{{ $tag->tag_name }}" {{ (in_array($tag->tag_name,$str_arr) ? 'selected':'') }}>{{ $tag->tag_name }}</option>
                                     @endforeach
                                 </select>
                                 @error('tags')<div class="invalid-feedback">{{ $message }}</div>@enderror

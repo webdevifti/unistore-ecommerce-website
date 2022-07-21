@@ -199,85 +199,174 @@ class AdminProductController extends Controller
     {
         //
         // dd($request->all());
-        $prp = Products::find($id);
-        if($prp == null){
-            return abort(404);
-        }
-        $discount_price = ($request->discount * $request->regular_price) / 100;
-        $discounted = $request->regular_price - $discount_price;
-        
-       
-        if($request->product_thumbnail){
-            $request->validate([
-                'product_thumbnail' => 'mimes:jpg,png,jpeg'
-            ]);
-            $extension = $request->product_thumbnail->getClientOriginalExtension();
-            $imageName = $id.'.'.$extension;
-            $image_path = public_path('uploads/products/thumbnails/'.$prp->thumbnail);
-            if (file_exists($image_path)) {
-                unlink($image_path);
-                $request->product_thumbnail->move(public_path('uploads/products/thumbnails/'), $imageName);
-            }
-            $prp->category_id = $request->category;
-            $prp->brand_id = $request->brand;
-            $prp->product_name = $request->product_name;
-            $prp->slug = Str::slug($request->product_name);
-            $prp->qty = $request->qty;
-            $prp->discount = $request->discount;
-            $prp->discounted_price = $discounted;
-            $prp->stock_alert = 5;
-            $prp->regular_price = $request->regular_price;
-            $prp->selling_price = $request->selling_price;
-            $prp->description = $request->short_des;
-            $prp->thumbnail = $imageName;
-            $prp->save();
-            $request->product_thumbnail->move(public_path('uploads/products/thumbnails/'), $imageName);
-
-            if($request->product_images){
-        
-                foreach($request->product_images as $image)
-                {
-                    $imgID = ProductImages::find($id);
-                    if($imgID == null){
-                        return abort(404);
-                    }
-                    $extension = $image->getClientOriginalExtension();
-                    $name = rand(11111,99999).'.'.$extension;
-                    $image_path = public_path('uploads/products/images/'.$imgID->image);
-                    if (file_exists($image_path)) {
-                        unlink($image_path);
-                        $image->move(public_path('uploads/products/images/'), $name);
-                    }
-                    $image->move(public_path().'/uploads/products/images/', $name);
-                    $imgID->image = $name;
-                    $imgID->save();
-                }
-            }
-               
-            $ps = ProductSpecification::find($id);
-            if($ps == null){
+        // try{
+            $prp = Products::find($id);
+            if($prp == null){
                 return abort(404);
             }
+            $discount_price = ($request->discount * $request->regular_price) / 100;
+            $discounted = $request->regular_price - $discount_price;
             
-            $ps->os = $request->os;
-            $ps->processor = $request->pcsr;
-            $ps->processor_tech = $request->pcsrt;
-            $ps->graphics = $request->graphics;
-            $ps->memory = $request->memory;
-            $ps->hard_drive = $request->hard_drive;
-            $ps->wireless = $request->wl;
-            $ps->power_supply = $request->ps;
-            $ps->battery = $request->battery;
-            $ps->back_cemara = $request->bc;
-            $ps->front_cemara = $request->fc;
-            $ps->fingerprint = $request->fingerprint;
-            $ps->sensor = $request->sensor;
-            $ps->bluetooth = $request->blth;
-            $ps->other = $request->other;
-            $ps->save();
+       
+            if($request->product_thumbnail){
+                $request->validate([
+                    'product_thumbnail' => 'mimes:jpg,png,jpeg'
+                ]);
+                $extension = $request->product_thumbnail->getClientOriginalExtension();
+                $imageName = $id.'.'.$extension;
+                $image_path = public_path('uploads/products/thumbnails/'.$prp->thumbnail);
+                if (file_exists($image_path)) {
+                    unlink($image_path);
+                    $request->product_thumbnail->move(public_path('uploads/products/thumbnails/'), $imageName);
+                }
+                $request->product_thumbnail->move(public_path('uploads/products/thumbnails/'), $imageName);
+                $prp->category_id = $request->category;
+                $prp->brand_id = $request->brand;
+                $prp->product_name = $request->product_name;
+                $prp->slug = Str::slug($request->product_name);
+                $prp->qty = $request->qty;
+                $prp->discount = $request->discount;
+                $prp->discounted_price = $discounted;
+                $prp->stock_alert = 5;
+                $prp->regular_price = $request->regular_price;
+                $prp->selling_price = $request->selling_price;
+                $prp->description = $request->short_des;
+                $prp->thumbnail = $imageName;
+                $prp->save();
+
+                if($request->product_images){
+            
+                    foreach($request->product_images as $image)
+                    {
+                        $imgID = ProductImages::find($id);
+                        if($imgID == null){
+                            return abort(404);
+                        }
+                        $extension = $image->getClientOriginalExtension();
+                        $name = rand(11111,99999).'.'.$extension;
+                        $image_path = public_path('uploads/products/images/'.$imgID->image);
+                        if (file_exists($image_path)) {
+                            unlink($image_path);
+                            $image->move(public_path('uploads/products/images/'), $name);
+                        }
+                        $image->move(public_path().'/uploads/products/images/', $name);
+                        $imgID->image = $name;
+                        $imgID->save();
+                    }
+                }
                 
+                $ps = ProductSpecification::find($id);
+                if($ps == null){
+                    return abort(404);
+                }
+                
+                $ps->os = $request->os;
+                $ps->processor = $request->pcsr;
+                $ps->processor_tech = $request->pcsrt;
+                $ps->graphics = $request->graphics;
+                $ps->memory = $request->memory;
+                $ps->hard_drive = $request->hard_drive;
+                $ps->wireless = $request->wl;
+                $ps->power_supply = $request->ps;
+                $ps->battery = $request->battery;
+                $ps->back_cemara = $request->bc;
+                $ps->front_cemara = $request->fc;
+                $ps->fingerprint = $request->fingerprint;
+                $ps->sensor = $request->sensor;
+                $ps->bluetooth = $request->blth;
+                $ps->other = $request->other;
+                $ps->save();
+
+
+                if($request->tags){
+                    $p = Products::find($id);
+                    
+                    foreach($request->tags as $tag){
+                        // Products::create([
+                        //     'tags' => $tag
+                        // ]);
+                        $p->tags = implode(',',$request->tags);
+                        
+                    }
+                    $p->save();
+                }
+             return back()->with('success','Product has been updated successfully');
                
-        }
+            }else{
+                $prp->category_id = $request->category;
+                $prp->brand_id = $request->brand;
+                $prp->product_name = $request->product_name;
+                $prp->slug = Str::slug($request->product_name);
+                $prp->qty = $request->qty;
+                $prp->discount = $request->discount;
+                $prp->discounted_price = $discounted;
+                $prp->stock_alert = 5;
+                $prp->regular_price = $request->regular_price;
+                $prp->selling_price = $request->selling_price;
+                $prp->description = $request->short_des;
+                $prp->save();
+                if($request->tags){
+                    $p = Products::find($id);
+                    
+                    foreach($request->tags as $tag){
+                        // Products::create([
+                        //     'tags' => $tag
+                        // ]);
+                        $p->tags = implode(',',$request->tags);
+                        
+                    }
+                    $p->save();
+                }
+                if($request->product_images){
+            
+                    foreach($request->product_images as $image)
+                    {
+                        $imgID = ProductImages::find($id);
+                        if($imgID == null){
+                            return abort(404);
+                        }
+                        $extension = $image->getClientOriginalExtension();
+                        $name = rand(11111,99999).'.'.$extension;
+                        $image_path = public_path('uploads/products/images/'.$imgID->image);
+                        if (file_exists($image_path)) {
+                            unlink($image_path);
+                            $image->move(public_path('uploads/products/images/'), $name);
+                        }
+                        $image->move(public_path().'/uploads/products/images/', $name);
+                        $imgID->image = $name;
+                        $imgID->save();
+                    }
+                }
+                
+                $ps = ProductSpecification::find($id);
+                if($ps == null){
+                    return abort(404);
+                }
+                
+                $ps->os = $request->os;
+                $ps->processor = $request->pcsr;
+                $ps->processor_tech = $request->pcsrt;
+                $ps->graphics = $request->graphics;
+                $ps->memory = $request->memory;
+                $ps->hard_drive = $request->hard_drive;
+                $ps->wireless = $request->wl;
+                $ps->power_supply = $request->ps;
+                $ps->battery = $request->battery;
+                $ps->back_cemara = $request->bc;
+                $ps->front_cemara = $request->fc;
+                $ps->fingerprint = $request->fingerprint;
+                $ps->sensor = $request->sensor;
+                $ps->bluetooth = $request->blth;
+                $ps->other = $request->other;
+                $ps->save();
+
+                return back()->with('success', 'Product has been updated successfully');
+            }
+            // return back()->with('success', 'Product has been updated successfully');
+        // }catch(Exception $e){
+            // return back()->with('error', 'Something wrong');
+
+        // }
     }
 
     /**
